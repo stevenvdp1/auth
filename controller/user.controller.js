@@ -61,6 +61,7 @@ async function loginUser(req, res, next) {
 }
 
 function generateToken(user) {
+    
     return jwt.sign(
         {
             email:user.email,
@@ -69,7 +70,9 @@ function generateToken(user) {
         },
         privateKey,
         {
-            expiresIn: accessTokenTtl
+            expiresIn: accessTokenTtl,
+            issuer:'uzaAuthPoc',
+            audience:'uzaAfnameApp'
         }
     )
 }
